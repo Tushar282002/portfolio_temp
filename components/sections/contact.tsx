@@ -1,11 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { createClient } from '@supabase/supabase-js';
 import { Mail, Linkedin, Github, Twitter, FileText, Send } from 'lucide-react';
 import { useState } from 'react';
 import { SectionShell, SectionHeading } from '@/components/section-primitives';
 import { SOCIAL_LINKS } from '@/lib/data';
 import { VisitorCounter } from '@/components/visitor-counter';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 const CONTACT_BUTTONS = [
   { label: 'Email', href: SOCIAL_LINKS.email, icon: Mail, accent: '199 92% 55%' },
@@ -17,15 +23,26 @@ const CONTACT_BUTTONS = [
 
 export function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\nFrom: ${form.name} (${form.email})`);
-    window.location.href = `mailto:tushargangurde859@gmail.com?subject=${subject}&body=${body}`;
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+    setStatus('submitting');
+
+    try {
+      const { error } = await supabase.from('contact_messages').insert({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+      });
+
+      if (error) throw error;
+
+      setForm({ name: '', email: '', message: '' });
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -123,11 +140,22 @@ export function Contact() {
             </div>
             <button
               type="submit"
-              className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] hover:glow-primary active:scale-95"
+              disabled={status === 'submitting'}
+              className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] hover:glow-primary active:scale-95 disabled:cursor-wait disabled:opacity-60"
             >
               <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              {sent ? 'Opening your email app...' : 'Send Message'}
+              {status === 'submitting' ? 'Saving...' : 'Send Message'}
             </button>
+            {status === 'success' && (
+              <p role="status" className="text-sm text-green-600">
+                Your message has been sent.
+              </p>
+            )}
+            {status === 'error' && (
+              <p role="alert" className="text-sm text-destructive">
+                We couldn&apos;t save your message. Please try again later.
+              </p>
+            )}
           </div>
         </motion.form>
       </div>

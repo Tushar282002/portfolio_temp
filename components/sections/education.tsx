@@ -41,6 +41,10 @@ export function Education() {
                   <Calendar className="h-3 w-3" />
                   2021 – 2025
                 </div>
+                <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+                  <Calendar className="h-3 w-3" />
+                  CGPA: 8.61/10
+                </div>
               </div>
             </div>
           </motion.div>

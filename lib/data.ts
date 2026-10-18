@@ -96,7 +96,7 @@ export interface Achievement {
 export const ACHIEVEMENTS: Achievement[] = [
   {
     title: 'LeetCode Knight Badge',
-    subtitle: 'Rating 1858 · Top 5.65%',
+    subtitle: 'Rating 1858 · Top 6.17%',
     icon: Cpu,
     accent: '199 92% 55%',
   },
@@ -137,15 +137,15 @@ export const SOCIAL_LINKS = {
   linkedin: 'https://www.linkedin.com/in/tushar-gangurde-/',
   twitter: 'https://x.com/tushu282002?t=krYfdDOqbUdmWSDJAUKnHA&s=09',
   email: 'mailto:tushargangurde859@gmail.com',
-  resume: '/resume.pdf',
+  resume: '/Tushar_Resume.pdf',
 };
 
 export const HERO_STATS = [
   { label: 'Years Experience', value: 1, suffix: '+' },
-  { label: 'Problems Solved', value: 600, suffix: '+' },
+  { label: 'Problems Solved', value: 800, suffix: '+' },
   { label: 'LeetCode Rating', value: 1858, suffix: '' },
   { label: 'IEEE Author', value: 1, suffix: '', display: 'IEEE' },
-  { label: 'Hackathon Finalist', value: 2, suffix: 'x', display: '2x' },
+  { label: 'Hackathon Finalist', value: 2, suffix: 'x', display: '2' },
 ];
 
 export const CODING_STATS = [
@@ -154,17 +154,17 @@ export const CODING_STATS = [
     metrics: [
       { label: 'Rating', value: 1858 },
       { label: 'Badge', value: 'Knight' },
-      { label: 'Top', value: '5.65%' },
-      { label: 'Solved', value: '600+' },
+      { label: 'Top', value: '6%' },
+      { label: 'Solved', value: '400+' },
     ],
     accent: '199 92% 55%',
   },
   {
     platform: 'GeeksforGeeks',
     metrics: [
-      { label: 'Institute Rank', value: '21' },
+      { label: 'Institute Rank', value: '26' },
       { label: 'Rating', value: '1847' },
-      { label: 'Problems', value: '400+' },
+      { label: 'Problems', value: '800+' },
       { label: 'Streak', value: 'Active' },
     ],
     accent: '160 70% 50%',

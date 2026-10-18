@@ -177,7 +177,7 @@ export function Hero() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="/resume.pdf"
+            href="/Tushar_Resume.pdf"
             className="glass group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all hover:scale-105 active:scale-95"
           >
             <FileText className="h-4 w-4" />

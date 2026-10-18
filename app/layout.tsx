@@ -73,6 +73,10 @@ export const metadata: Metadata = {
     creator: '@tushu282002',
     images: ['/og.png'],
   },
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f0f2f8' },
+    { media: '(prefers-color-scheme: dark)', color: '#080c18' },
+  ],
   robots: {
     index: true,
     follow: true,
@@ -86,15 +90,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
-};
-
-export const viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f0f2f8' },
-    { media: '(prefers-color-scheme: dark)', color: '#080c18' },
-  ],
-  width: 'device-width',
-  initialScale: 1,
 };
 
 export default function RootLayout({
